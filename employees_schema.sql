@@ -54,18 +54,6 @@ CREATE TABLE department_employee (
 
 
 --
--- Name: department_manager; Type: TABLE; Schema: employees; Owner: -
---
-
-CREATE TABLE department_manager (
-    employee_id bigint NOT NULL,
-    department_id character(4) NOT NULL,
-    from_date date NOT NULL,
-    to_date date NOT NULL
-);
-
-
---
 -- Name: employee; Type: TABLE; Schema: employees; Owner: -
 --
 
@@ -149,9 +137,6 @@ ALTER TABLE ONLY department_employee
 -- Name: idx_16985_primary; Type: CONSTRAINT; Schema: employees; Owner: -
 --
 
-ALTER TABLE ONLY department_manager
-    ADD CONSTRAINT idx_16985_primary PRIMARY KEY (employee_id, department_id);
-
 
 --
 -- Name: idx_16988_primary; Type: CONSTRAINT; Schema: employees; Owner: -
@@ -195,8 +180,6 @@ CREATE INDEX idx_16982_dept_no ON department_employee USING btree (department_id
 -- Name: idx_16985_dept_no; Type: INDEX; Schema: employees; Owner: -
 --
 
-CREATE INDEX idx_16985_dept_no ON department_manager USING btree (department_id);
-
 
 --
 -- Name: dept_emp_ibfk_1; Type: FK CONSTRAINT; Schema: employees; Owner: -
@@ -212,22 +195,6 @@ ALTER TABLE ONLY department_employee
 
 ALTER TABLE ONLY department_employee
     ADD CONSTRAINT dept_emp_ibfk_2 FOREIGN KEY (department_id) REFERENCES department(id) ON UPDATE RESTRICT ON DELETE CASCADE;
-
-
---
--- Name: dept_manager_ibfk_1; Type: FK CONSTRAINT; Schema: employees; Owner: -
---
-
-ALTER TABLE ONLY department_manager
-    ADD CONSTRAINT dept_manager_ibfk_1 FOREIGN KEY (employee_id) REFERENCES employee(id) ON UPDATE RESTRICT ON DELETE CASCADE;
-
-
---
--- Name: dept_manager_ibfk_2; Type: FK CONSTRAINT; Schema: employees; Owner: -
---
-
-ALTER TABLE ONLY department_manager
-    ADD CONSTRAINT dept_manager_ibfk_2 FOREIGN KEY (department_id) REFERENCES department(id) ON UPDATE RESTRICT ON DELETE CASCADE;
 
 
 --
